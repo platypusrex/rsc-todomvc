@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1700365879403,
+      "tag": "0000_strong_post",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1700367340629,
+      "tag": "0001_tough_warstar",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1700367623676,
+      "tag": "0002_tan_zarda",
+      "breakpoints": true
+    }
+  ]
+}

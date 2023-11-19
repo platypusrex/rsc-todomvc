@@ -2,26 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer components {
+  .todo-card {
+    @apply relative w-full rounded border border-solid border-gray-200 bg-white font-thin shadow-card-outer
+    before:absolute before:inset-0 before:-z-[1] before:translate-y-1.5 before:scale-x-[0.99] before:rounded
+    before:border before:border-solid before:border-gray-200 before:bg-white before:shadow-sm after:absolute
+    after:inset-0 after:-z-[2] after:translate-y-3 after:scale-x-[0.98] after:rounded after:border
+    after:border-solid after:border-gray-200 after:bg-white after:shadow-sm;
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
