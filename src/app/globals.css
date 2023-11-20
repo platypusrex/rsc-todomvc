@@ -10,6 +10,10 @@
     after:inset-0 after:-z-[2] after:translate-y-3 after:scale-x-[0.98] after:rounded after:border
     after:border-solid after:border-gray-200 after:bg-white after:shadow-sm;
   }
+
+  .todo {
+    @apply relative flex min-h-[60px] items-center border-b border-b-gray-100 pl-3 tracking-tight;
+  }
 }
 
 body {

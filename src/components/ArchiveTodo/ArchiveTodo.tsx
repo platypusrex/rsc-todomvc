@@ -1,10 +1,9 @@
 import React from 'react';
-import { InferSelectModel } from 'drizzle-orm';
 import { archiveCompletedTodos } from '~/actions/archiveCompletedTodos';
-import { todos } from '~/db/schema';
+import type { Todo } from '~/db/schema';
 
 type ArchiveTodoProps = {
-  todos: InferSelectModel<typeof todos>[];
+  todos: Todo[];
 };
 
 export const ArchiveTodo: React.FC<ArchiveTodoProps> = ({ todos }) => {

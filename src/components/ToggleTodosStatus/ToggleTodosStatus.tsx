@@ -1,7 +1,6 @@
 import React from 'react';
-import { InferSelectModel } from 'drizzle-orm';
-import { todos } from '~/db/schema';
 import { toggleTodos } from '~/actions/toggleTodos';
+import type { Todo } from '~/db/schema';
 
 type MappedTodos = {
   completed: string[];
@@ -9,7 +8,7 @@ type MappedTodos = {
 };
 
 type ToggleTodosStatusProps = {
-  todos: InferSelectModel<typeof todos>[];
+  todos: Todo[];
 };
 
 export const ToggleTodosStatus: React.FC<ToggleTodosStatusProps> = ({ todos }) => {

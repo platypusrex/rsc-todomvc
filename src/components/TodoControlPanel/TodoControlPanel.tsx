@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { InferSelectModel } from 'drizzle-orm';
-import { todos } from '~/db/schema';
+import type { Todo } from '~/db/schema';
 
 const CONTROL_LINKS = [
   { href: '/?status=all', name: 'All', value: 'all' },
@@ -11,7 +10,7 @@ const CONTROL_LINKS = [
 
 type TodoControlPanelProps = {
   status?: 'all' | 'active' | 'completed';
-  todos: InferSelectModel<typeof todos>[];
+  todos: Todo[];
 };
 
 export const TodoControlPanel: React.FC<TodoControlPanelProps> = ({ status, todos }) => {

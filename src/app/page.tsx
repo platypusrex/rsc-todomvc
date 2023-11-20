@@ -1,9 +1,12 @@
+import React from 'react';
+import { getTodos } from '~/actions/getTodos';
 import { CreateTodo } from '~/components/CreateTodo';
-import { Todo } from '~/components/Todo';
 import { ToggleTodosStatus } from '~/components/ToggleTodosStatus';
 import { ArchiveTodo } from '~/components/ArchiveTodo';
 import { TodoControlPanel } from '~/components/TodoControlPanel';
-import { getTodos } from '~/actions/getTodos';
+import { TodoStatus } from '~/components/TodoStatus';
+import { TodoMessage } from '~/components/TodoMessage';
+import { DeleteTodo } from '~/components/DeleteTodo';
 
 type TodoStatus = 'all' | 'active' | 'completed';
 
@@ -32,7 +35,11 @@ export default async function Home({ searchParams }: TodoProps) {
 
           <ul>
             {filteredTodos.map((todo) => (
-              <Todo key={todo.id} todo={todo} />
+              <li key={todo.id} className="todo group">
+                <TodoStatus todo={todo} />
+                <TodoMessage todo={todo} />
+                <DeleteTodo todo={todo} />
+              </li>
             ))}
           </ul>
 

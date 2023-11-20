@@ -7,3 +7,5 @@ export const todos = pgTable('todos', {
   message: text('message').notNull(),
   status: status('status').notNull(),
 });
+
+export type Todo = typeof todos.$inferSelect;
