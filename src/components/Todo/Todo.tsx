@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ChangeEventHandler, MouseEventHandler, useRef, useState } from 'react';
+import React, { ChangeEventHandler, MouseEventHandler, MouseEvent, useRef, useState } from 'react';
 import { InferSelectModel } from 'drizzle-orm';
 import { useOutsideClick } from '~/hooks/useClickOutside';
 import { updateTodoStatus } from '~/actions/updateTodoStatus';
@@ -55,7 +55,7 @@ export const Todo: React.FC<TodoProps> = ({ todo }) => {
         <button hidden type="submit" ref={statusSubmitBtnRef} />
       </form>
 
-      <form className="flex-1" ref={formRef} action={updateTodoMessage.bind(null, todo)}>
+      <form className="flex-1" ref={formRef} action={updateTodoMessage.bind(null, todo.id)}>
         <input
           type="text"
           name="message"
