@@ -1,12 +1,12 @@
 'use client';
 
-import React, { ChangeEventHandler, MouseEventHandler, MouseEvent, useRef, useState } from 'react';
+import React, { ChangeEventHandler, MouseEventHandler, useRef, useState } from 'react';
 import { InferSelectModel } from 'drizzle-orm';
 import { useOutsideClick } from '~/hooks/useClickOutside';
 import { updateTodoStatus } from '~/actions/updateTodoStatus';
+import { updateTodoMessage } from '~/actions/updateTodoMessage';
 import { deleteTodo } from '~/actions/deleteTodo';
 import { todos } from '~/db/schema';
-import { updateTodoMessage } from '~/actions/updateTodoMessage';
 
 type TodoProps = {
   todo: InferSelectModel<typeof todos>;
@@ -16,12 +16,10 @@ export const Todo: React.FC<TodoProps> = ({ todo }) => {
   const statusSubmitBtnRef = useRef<HTMLButtonElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
-  const messageInputRef = useOutsideClick(
-    () => {
-      setReadOnly(true);
-      formRef.current?.requestSubmit();
-    }
-  );
+  const messageInputRef = useOutsideClick(() => {
+    setReadOnly(true);
+    formRef.current?.requestSubmit();
+  });
 
   const [readonly, setReadOnly] = useState(true);
 
@@ -63,9 +61,13 @@ export const Todo: React.FC<TodoProps> = ({ todo }) => {
           readOnly={readonly}
           onDoubleClick={handleDoubleClick}
           defaultValue={todo.message}
-          className={`text-[22px] outline-none min-h-[60px] px-4 h-full w-full relative
-            ${readonly ? 'shadow-none' : 'shadow-[inset_0_0_5px_#666] z-10'}
-            ${todo.status === 'completed' ? 'text-gray-300 line-through' : 'text-gray-500'}`}
+          className={`relative h-full min-h-[60px] w-full px-4 text-[22px] outline-none
+            ${readonly ? 'shadow-none' : 'z-10 shadow-[inset_0_0_5px_#666]'}
+            ${
+              todo.status === 'completed'
+                ? `${readonly ? 'line-through text-gray-300' : 'no-underline text-gray-500'}`
+                : 'text-gray-500'
+            }`}
         />
         <button type="submit" />
       </form>
