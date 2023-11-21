@@ -7,8 +7,8 @@ export const CreateTodo: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleFormSubmit = async (formData: FormData) => {
-    formRef.current?.reset?.();
     await createTodo(formData);
+    formRef.current?.reset?.();
   };
 
   return (

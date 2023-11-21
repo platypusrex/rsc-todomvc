@@ -10,4 +10,5 @@ export const updateTodoStatus = async (id: string, formData: FormData) => {
   const status = checkboxState === 'on' ? 'completed' : 'active';
   await db.update(todos).set({ status }).where(eq(todos.id, id));
   revalidatePath('/');
+  return id;
 };

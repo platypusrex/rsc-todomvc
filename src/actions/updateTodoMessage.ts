@@ -3,15 +3,43 @@
 import { revalidatePath } from 'next/cache';
 import { eq } from 'drizzle-orm';
 import { db } from '~/db';
-import { todos } from '~/db/schema';
+import { Todo, todos } from '~/db/schema';
 
-export const updateTodoMessage = async (id: string, formData: FormData) => {
-  if (!id) return;
+type UpdateTodoMessageArgs = {
+  todo: Todo;
+  error?: string;
+  status?: string;
+};
 
-  const todo = await db.select().from(todos).where(eq(todos.id, id));
-  const updatedMessage = formData.get('message') as string;
-  if (todo?.[0].message === updatedMessage) return;
+export const updateTodoMessage = async (
+  prevState: UpdateTodoMessageArgs,
+  formData: FormData
+): Promise<UpdateTodoMessageArgs> => {
+  const { todo } = prevState ?? {};
+  if (!todo) return prevState;
 
-  await db.update(todos).set({ message: updatedMessage }).where(eq(todos.id, id));
-  revalidatePath('/');
+  try {
+    const { id } = todo;
+    const currentTodo = await db.select().from(todos).where(eq(todos.id, id));
+    const updatedMessage = formData.get('message') as string;
+
+    if (currentTodo?.[0].message === updatedMessage) {
+      return { ...prevState, todo: currentTodo[0] };
+    }
+
+    const updatedTodo = await db
+      .update(todos)
+      .set({ message: updatedMessage })
+      .where(eq(todos.id, id))
+      .returning();
+
+    revalidatePath('/');
+    return { todo: updatedTodo[0], status: 'success' };
+  } catch (e) {
+    if (e instanceof Error) {
+      return { ...prevState, error: e.message };
+    } else {
+      return { ...prevState, error: 'unknown error' };
+    }
+  }
 };
