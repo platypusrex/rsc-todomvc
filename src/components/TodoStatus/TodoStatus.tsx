@@ -2,6 +2,7 @@
 
 import React, { ChangeEventHandler, useRef } from 'react';
 import { updateTodoStatus } from '~/actions/updateTodoStatus';
+import { SubmitButton } from '~/components/SubmitButton';
 import { Todo } from '~/db/schema';
 
 type TodoStatusProps = {
@@ -27,7 +28,7 @@ export const TodoStatus: React.FC<TodoStatusProps> = ({ todo }) => {
           dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800
           dark:focus:ring-blue-600"
       />
-      <button hidden type="submit" ref={statusSubmitBtnRef} />
+      <SubmitButton hidden ref={statusSubmitBtnRef} />
     </form>
   );
 }

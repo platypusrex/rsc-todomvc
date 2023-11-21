@@ -1,6 +1,7 @@
 import React from 'react';
 import { toggleTodos } from '~/actions/toggleTodos';
 import type { Todo } from '~/db/schema';
+import { SubmitButton } from '~/components/SubmitButton';
 
 type MappedTodos = {
   completed: string[];
@@ -31,10 +32,10 @@ export const ToggleTodosStatus: React.FC<ToggleTodosStatusProps> = ({ todos }) =
         ids: !allCompleted ? mappedTodos.active : mappedTodos.completed,
       })}
     >
-      <button
-        type="submit"
-        className={`mr-5 rotate-90 text-[22px] before:content-['❯'] 
-          ${allCompleted ? 'text-gray-500' : 'text-gray-200'}`}
+      <SubmitButton
+        className={`mr-5 rotate-90 text-[22px] before:content-['❯'] ${
+          allCompleted ? 'text-gray-500' : 'text-gray-200'
+        }`}
       />
     </form>
   );

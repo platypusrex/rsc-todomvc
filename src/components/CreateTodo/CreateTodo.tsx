@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useRef } from 'react';
 import { createTodo } from '~/actions/createTodo';
 
@@ -18,7 +19,6 @@ export const CreateTodo: React.FC = () => {
         placeholder="What needs to be done?"
         className="w-full text-2xl font-extralight placeholder-gray-200 outline-none placeholder:italic"
       />
-      <button type="submit" />
     </form>
   );
 };

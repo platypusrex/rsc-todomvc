@@ -12,7 +12,7 @@
   }
 
   .todo {
-    @apply relative flex min-h-[60px] items-center border-b border-b-gray-100 pl-3 tracking-tight;
+    @apply relative flex items-center border-b border-b-gray-100 pl-3 tracking-tight;
   }
 }
 

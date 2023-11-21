@@ -4,6 +4,7 @@ import React, { MouseEventHandler, useRef, useState } from 'react';
 import { updateTodoMessage } from '~/actions/updateTodoMessage';
 import { useOutsideClick } from '~/hooks/useClickOutside';
 import { Todo } from '~/db/schema';
+import { SubmitButton } from '~/components/SubmitButton';
 
 type TodoMessageProps = {
   todo: Todo;
@@ -24,24 +25,30 @@ export const TodoMessage: React.FC<TodoMessageProps> = ({ todo }) => {
     messageInputRef.current?.focus?.();
   };
 
+  if (readonly) {
+    return (
+      <p
+        className={`relative h-full w-full pl-4 pr-8 py-5 text-[22px] leading-[1.2] ${
+          todo.status === 'completed' ? 'text-gray-300 line-through' : 'text-gray-500'
+        }`}
+        onDoubleClick={handleDoubleClick}
+      >
+        {todo.message}
+      </p>
+    );
+  }
+
   return (
     <form className="flex-1" ref={formRef} action={updateTodoMessage.bind(null, todo.id)}>
       <input
         type="text"
         name="message"
         ref={messageInputRef}
-        readOnly={readonly}
-        onDoubleClick={handleDoubleClick}
         defaultValue={todo.message}
-        className={`relative h-full min-h-[60px] w-full px-4 text-[22px] outline-none
-            ${readonly ? 'shadow-none' : 'z-10 shadow-[inset_0_0_5px_#666]'}
-            ${
-          todo.status === 'completed'
-            ? `${readonly ? 'line-through text-gray-300' : 'no-underline text-gray-500'}`
-            : 'text-gray-500'
-        }`}
+        className="relative z-10 h-full w-full border-none px-4 py-5 -tracking-[0.4px]
+         text-[22px] leading-[1.25] shadow-[inset_0_0_5px_#666] outline-none [font-stretch:0%]"
       />
-      <button type="submit" />
+      <SubmitButton hidden />
     </form>
   );
-}
+};
