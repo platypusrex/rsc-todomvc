@@ -46,8 +46,10 @@ export const TodoMessage: React.FC<TodoMessageProps> = ({ todo }) => {
           onChange={(e) => setMessage(e.target.value)}
           ref={messageInputRef}
           defaultValue={formState.todo.message}
-          className="relative z-10 h-full w-full border-none px-4 py-5 text-[22px]
-         leading-[1.25] -tracking-[0.4px] shadow-[inset_0_0_5px_#666] outline-none [font-stretch:0%]"
+          className="relative z-10 h-full w-full border-none
+            px-4 py-5 text-[22px] leading-[1.25]
+            -tracking-[0.4px] shadow-[inset_0_0_5px_#666]
+            outline-none [font-stretch:0%]"
         />
       )}
       <SubmitButton hidden />

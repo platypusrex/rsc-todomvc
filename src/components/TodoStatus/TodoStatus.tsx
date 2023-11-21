@@ -11,14 +11,14 @@ type TodoStatusProps = {
 };
 
 export const TodoStatus: React.FC<TodoStatusProps> = ({ todo }) => {
-  const [, formAction] = useFormState(updateTodoStatus, todo.id)
+  const [, formAction] = useFormState(updateTodoStatus, todo.id);
   const statusSubmitBtnRef = useRef<HTMLButtonElement>(null);
-  const [, startTransition] = useTransition()
+  const [, startTransition] = useTransition();
   const [optimisticTodo, addOptimisticStatus] = useOptimistic<Todo, Todo['status']>(
     todo,
     (state, status) => ({
       ...state,
-      status
+      status,
     })
   );
 
@@ -28,7 +28,7 @@ export const TodoStatus: React.FC<TodoStatusProps> = ({ todo }) => {
   useEffect(() => {
     if (todo.status !== optimisticTodo.status) {
       startTransition(() => {
-        addOptimisticStatus(todo.status)
+        addOptimisticStatus(todo.status);
       });
     }
     // eslint-disable-next-line
@@ -39,23 +39,31 @@ export const TodoStatus: React.FC<TodoStatusProps> = ({ todo }) => {
   };
 
   return (
-    <form className="flex" action={(formData) => {
-      const checkboxState = formData.get('status');
-      const status = checkboxState === 'on' ? 'completed' : 'active';
-      addOptimisticStatus(status)
-      formAction(formData)
-    }}>
-      <input
-        onChange={handleChange}
-        type="checkbox"
-        name="status"
-        checked={optimisticTodo.status === 'completed'}
-        className="mr-3 h-4 w-4 rounded border-gray-300
-          bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500
-          dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800
-          dark:focus:ring-blue-600"
-      />
+    <form
+      className="flex"
+      action={(formData) => {
+        const checkboxState = formData.get('status');
+        const status = checkboxState === 'on' ? 'completed' : 'active';
+        addOptimisticStatus(status);
+        formAction(formData);
+      }}
+    >
+      <label
+        htmlFor="todo-status"
+        className={`${
+          optimisticTodo.status === 'completed' ? 'toggle-input-on' : 'toggle-input-off'
+        } relative h-[35px] w-[38px] bg-[center_left] bg-no-repeat`}
+      >
+        <input
+          id="todo-status"
+          onChange={handleChange}
+          type="checkbox"
+          name="status"
+          checked={optimisticTodo.status === 'completed'}
+          className="absolute inset-0 z-[1] mr-3 h-[35px] w-[38px] rounded opacity-0"
+        />
+      </label>
       <SubmitButton hidden ref={statusSubmitBtnRef} />
     </form>
   );
-}
+};
