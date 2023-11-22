@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer components {
+  .login-btn {
+    @apply animate-pulse rounded border border-dashed border-black bg-white px-6
+    py-3 text-lg font-light text-black transition duration-200 hover:animate-none
+    hover:bg-black hover:text-white hover:brightness-[1.075];
+  }
+
   .todo-card {
     @apply relative w-full rounded border border-solid border-gray-200 bg-white font-thin shadow-card-outer
     before:absolute before:inset-0 before:-z-[1] before:translate-y-1.5 before:scale-x-[0.99] before:rounded

@@ -31,10 +31,10 @@ export const TodoMessage: React.FC<TodoMessageProps> = ({ todo }) => {
     <form className="flex-1" ref={formRef} action={formAction}>
       {readonly ? (
         <p
+          onDoubleClick={handleDoubleClick}
           className={`relative h-full w-full py-4 pl-4 pr-8 text-[24px] ${
             todo.status === 'completed' ? 'text-gray-300 line-through' : 'text-gray-500'
           }`}
-          onDoubleClick={handleDoubleClick}
         >
           {message}
         </p>
