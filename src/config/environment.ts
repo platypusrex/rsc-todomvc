@@ -6,4 +6,6 @@ export const env = cleanEnv(process.env, {
   AUTH_GITHUB_ID: str(),
   AUTH_GITHUB_SECRET: str(),
   AUTH_SECRET: str(),
+  GOOGLE_CLIENT_ID: str(),
+  GOOGLE_CLIENT_SECRET: str(),
 });
