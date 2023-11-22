@@ -1,13 +1,13 @@
 import { NextResponse } from 'next/server';
-import { auth } from './auth';
+import type { NextRequest } from 'next/server';
 
-export default auth((req) => {
-  const status = req.nextUrl.searchParams.get('status');
+export function middleware(request: NextRequest) {
+  const status = request.nextUrl.searchParams.get('status');
   if (!status) {
-    return NextResponse.redirect(new URL('/?status=all', req.url));
+    return NextResponse.redirect(new URL('/?status=all', request.url));
   }
-});
+}
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: '/',
 };
