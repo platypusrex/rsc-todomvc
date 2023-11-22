@@ -1,15 +1,13 @@
 import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { auth } from './auth';
 
-// This function can be marked `async` if using `await` inside
-export function middleware(request: NextRequest) {
-  const status = request.nextUrl.searchParams.get('status');
+export default auth((req) => {
+  const status = req.nextUrl.searchParams.get('status');
   if (!status) {
-    return NextResponse.redirect(new URL('/?status=all', request.url));
+    return NextResponse.redirect(new URL('/?status=all', req.url));
   }
-}
+});
 
-// See "Matching Paths" below to learn more
 export const config = {
-  matcher: '/',
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };
