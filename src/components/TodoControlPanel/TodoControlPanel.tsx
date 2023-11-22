@@ -23,11 +23,11 @@ export const TodoControlPanel: React.FC<TodoControlPanelProps> = ({ status, todo
           return (
             <li key={name}>
               <Link
+                href={href}
                 className={`rounded border border-solid px-1.5 py-1
                 ${
                   status === value ? 'border-gray-300' : 'border-transparent hover:border-gray-200'
                 }`}
-                href={href}
               >
                 {name}
               </Link>

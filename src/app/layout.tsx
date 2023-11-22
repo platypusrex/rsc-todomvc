@@ -4,7 +4,9 @@ import { Albert_Sans } from 'next/font/google';
 import './globals.css';
 import { Loading } from '~/components/Loading';
 
-const inter = Albert_Sans({ subsets: ['latin'] });
+const inter = Albert_Sans({
+  subsets: ['latin'],
+});
 
 export const metadata: Metadata = {
   title: 'Next.js - RSC - TodoMVC',

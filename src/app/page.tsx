@@ -28,7 +28,7 @@ export default async function Home({ searchParams }: TodoProps) {
       <h1 className="mb-3 text-8xl font-thin tracking-tight text-gray-300">todos</h1>
       <div className="relative z-10 w-full max-w-[550px]">
         <div className={`todo-card ${!Boolean(todos.length) ? 'before:hidden after:hidden' :''}`}>
-          <div className="flex items-center p-4 shadow-card-inner">
+          <div className="flex items-center pl-2 pr-5 py-4 shadow-card-inner">
             {Boolean(todos.length) && <ToggleTodosStatus todos={todos} />}
             <CreateTodo />
           </div>

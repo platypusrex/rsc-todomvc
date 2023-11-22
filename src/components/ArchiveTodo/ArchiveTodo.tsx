@@ -8,12 +8,12 @@ type ArchiveTodoProps = {
 };
 
 export const ArchiveTodo: React.FC<ArchiveTodoProps> = ({ todos }) => {
-  const hasCompleted = !!todos.find((todo) => todo.status === 'completed');
+  const hasCompletedTodos = !!todos.find((todo) => todo.status === 'completed');
   return (
     <form action={archiveCompletedTodos}>
       <SubmitButton
-        className={`border-b-solid border-b border-b-transparent
-          leading-3 hover:border-b-gray-600 ${!hasCompleted ? 'invisible' : 'visible'}`}
+        className={`border-b-solid border-b border-b-transparent text-gray-600
+          leading-[0.85rem] hover:border-b-gray-700 ${!hasCompletedTodos ? 'invisible' : 'visible'}`}
       >
         Clear completed
       </SubmitButton>

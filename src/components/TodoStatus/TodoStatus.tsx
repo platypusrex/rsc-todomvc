@@ -11,9 +11,11 @@ type TodoStatusProps = {
 };
 
 export const TodoStatus: React.FC<TodoStatusProps> = ({ todo }) => {
-  const [, formAction] = useFormState(updateTodoStatus, todo.id);
   const statusSubmitBtnRef = useRef<HTMLButtonElement>(null);
+
+  const [, formAction] = useFormState(updateTodoStatus, todo.id);
   const [, startTransition] = useTransition();
+
   const [optimisticTodo, addOptimisticStatus] = useOptimistic<Todo, Todo['status']>(
     todo,
     (state, status) => ({
@@ -22,9 +24,8 @@ export const TodoStatus: React.FC<TodoStatusProps> = ({ todo }) => {
     })
   );
 
-  // this useEffect is a total hack
-  // it's only way I found to keep the todo and optimistic todo
-  //  in sync with the toggle todos form
+  // this useEffect is a hack in an attempt to keep the
+  // todo and optimistic todo in sync with the toggle todos form
   useEffect(() => {
     if (todo.status !== optimisticTodo.status) {
       startTransition(() => {

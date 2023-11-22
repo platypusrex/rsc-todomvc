@@ -31,7 +31,7 @@ export const TodoMessage: React.FC<TodoMessageProps> = ({ todo }) => {
     <form className="flex-1" ref={formRef} action={formAction}>
       {readonly ? (
         <p
-          className={`relative h-full w-full py-5 pl-4 pr-8 text-[22px] leading-[1.2] ${
+          className={`relative h-full w-full py-4 pl-4 pr-8 text-[24px] ${
             todo.status === 'completed' ? 'text-gray-300 line-through' : 'text-gray-500'
           }`}
           onDoubleClick={handleDoubleClick}
@@ -46,10 +46,8 @@ export const TodoMessage: React.FC<TodoMessageProps> = ({ todo }) => {
           onChange={(e) => setMessage(e.target.value)}
           ref={messageInputRef}
           defaultValue={formState.todo.message}
-          className="relative z-10 h-full w-full border-none
-            px-4 py-5 text-[22px] leading-[1.25]
-            -tracking-[0.4px] shadow-[inset_0_0_5px_#666]
-            outline-none [font-stretch:0%]"
+          className="relative z-10 h-full w-full border-none px-4 py-[1.215rem] text-[24px]
+           leading-[1.5] -tracking-[0.4px] shadow-[inset_0_0_5px_#666] outline-none [font-stretch:0%]"
         />
       )}
       <SubmitButton hidden />

@@ -12,7 +12,7 @@ export const CreateTodo: React.FC = () => {
   };
 
   return (
-    <form className="w-full" ref={formRef} action={handleFormSubmit}>
+    <form className="ml-3 w-full" ref={formRef} action={handleFormSubmit}>
       <input
         name="todo"
         type="text"
