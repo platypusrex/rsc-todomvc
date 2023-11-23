@@ -11,7 +11,8 @@
 
   .login-btn-google {
     @apply animate-pulse relative min-w-[200px] rounded border border-solid border-transparent bg-white px-6 py-3
-    duration-200 hover:animate-none hover:bg-gradient-to-r hover:from-blue-400 hover:via-red-400 hover:to-green-400;
+    duration-200 hover:animate-none hover:bg-gradient-to-r hover:from-blue-400 hover:via-red-400
+    hover:to-green-400 hover:text-white shadow-sm;
   }
 
   .login-btn-google-text {
@@ -37,5 +38,15 @@
 
   .toggle-input-on {
     @apply bg-[url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E')] text-[#d9d9d9];
+  }
+
+  .spinner-black {
+    @apply inline w-5 h-5 fill-black text-gray-100 animate-spin dark:text-gray-400 group-hover:text-white
+    group-hover:fill-gray-400
+  }
+
+  .spinner-gradient {
+    @apply inline w-5 h-5 fill-green-600 text-blue-200 animate-spin dark:text-gray-400
+    group-hover:text-white group-hover:fill-green-400
   }
 }

@@ -9,7 +9,7 @@ export const LogoutButton: React.FC = () => (
       await signOut();
     }}
   >
-    <SubmitButton className="border border-solid border-gray-300 bg-white px-2 py-0.5 ">
+    <SubmitButton className="border border-solid border-gray-300 bg-white px-2 py-0.5">
       <span className="flex items-center gap-2 text-xs text-gray-400">
         <svg
           xmlns="http://www.w3.org/2000/svg"

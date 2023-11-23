@@ -1,5 +1,6 @@
 import { signIn } from '~/auth';
 import { SubmitButton } from '~/components/SubmitButton';
+import { Spinner } from '~/components/Spinner';
 
 export default function Login() {
   return (
@@ -14,21 +15,33 @@ export default function Login() {
             await signIn('github', { redirectTo: '/' });
           }}
         >
-          <SubmitButton className="login-btn-github" loadingText="Beep bop boop...">
+          <SubmitButton
+            className="login-btn-github"
+            loading={<Spinner variant="black" text="Beep bop boop..." />}
+          >
             Github
           </SubmitButton>
         </form>
+
         <p className="font-light text-gray-600">or</p>
+
         <form
           action={async () => {
             'use server';
             await signIn('google', { redirectTo: '/' });
           }}
         >
-          <SubmitButton className="login-btn-google group" loadingText="Beep bop boop...">
-            <span className="login-btn-google-text">
-              Google
-            </span>
+          <SubmitButton
+            className="login-btn-google group"
+            loading={
+              <Spinner
+                variant="gradient"
+                text="Beep bop boop..."
+                textClassName="login-btn-google-text"
+              />
+            }
+          >
+            <span className="login-btn-google-text">Google</span>
           </SubmitButton>
         </form>
       </div>
