@@ -10,7 +10,7 @@
   }
 
   .login-btn-google {
-    @apply relative min-w-[200px] rounded border border-solid border-transparent bg-white px-6 py-3
+    @apply animate-pulse relative min-w-[200px] rounded border border-solid border-transparent bg-white px-6 py-3
     duration-200 hover:animate-none hover:bg-gradient-to-r hover:from-blue-400 hover:via-red-400 hover:to-green-400;
   }
 
