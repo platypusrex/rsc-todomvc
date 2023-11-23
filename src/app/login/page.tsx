@@ -1,33 +1,37 @@
 import { signIn } from '~/auth';
 import { SubmitButton } from '~/components/SubmitButton';
 
-export default function Login () {
+export default function Login() {
   return (
-    <div className="bg-gray-100 flex flex-col items-center justify-center h-screen w-full">
-      <h1 className="text-4xl mb-8 font-bold">Next.js 14 TodoMVC</h1>
-      <form action={async () => {
-        'use server';
-        await signIn('github', { redirectTo: '/' });
-      }}>
-        <SubmitButton className="login-btn-github" loadingText="Beep bop boop...">
-          Sign in with Github
-        </SubmitButton>
-      </form>
+    <div className="flex h-screen w-full flex-col items-center justify-center bg-gray-100 px-2 md:px-0">
+      <h1 className="mb-4 text-center text-5xl font-extrabold md:text-6xl">Next.js 14 TodoMVC</h1>
+      <p className="mb-4 font-light text-gray-600">Sign in with</p>
 
-      <form action={async () => {
-        'use server';
-        await signIn('google', { redirectTo: '/' });
-      }}>
-        <SubmitButton className="login-btn-google mt-4 group" loadingText="Beep bop boop...">
-          <span
-            className="bg-gradient-to-r from-blue-600 via-green-500
-             to-indigo-400 duration-200 hover:animate-none text-transparent bg-clip-text
-             group-hover:text-white group-hover:bg-clip-[unset]"
-          >
-            Sign in with Google
-          </span>
-        </SubmitButton>
-      </form>
+      <div className="flex flex-col items-center gap-4 md:flex-row">
+        <form
+          action={async () => {
+            'use server';
+            await signIn('github', { redirectTo: '/' });
+          }}
+        >
+          <SubmitButton className="login-btn-github" loadingText="Beep bop boop...">
+            Github
+          </SubmitButton>
+        </form>
+        <p className="font-light text-gray-600">or</p>
+        <form
+          action={async () => {
+            'use server';
+            await signIn('google', { redirectTo: '/' });
+          }}
+        >
+          <SubmitButton className="login-btn-google group" loadingText="Beep bop boop...">
+            <span className="login-btn-google-text">
+              Google
+            </span>
+          </SubmitButton>
+        </form>
+      </div>
     </div>
   );
 }
