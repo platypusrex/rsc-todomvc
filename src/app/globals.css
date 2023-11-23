@@ -10,8 +10,13 @@
   }
 
   .login-btn-google {
-    @apply relative min-w-[200px] rounded border-2 border-dashed bg-white px-6 py-3 duration-200 hover:animate-none
-    hover:bg-gradient-to-r hover:from-blue-600 hover:via-green-500 hover:to-indigo-400;
+    @apply relative min-w-[200px] rounded border border-solid border-transparent bg-white px-6 py-3
+    duration-200 hover:animate-none hover:bg-gradient-to-r hover:from-blue-400 hover:via-red-400 hover:to-green-400;
+  }
+
+  .login-btn-google-text {
+    @apply bg-gradient-to-r from-blue-400 via-red-400 to-green-400 bg-clip-text leading-7
+    text-transparent duration-200 hover:animate-none group-hover:text-white
   }
 
   .todo-card {

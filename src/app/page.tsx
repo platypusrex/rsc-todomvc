@@ -7,9 +7,7 @@ import { TodoControlPanel } from '~/components/TodoControlPanel';
 import { TodoStatus } from '~/components/TodoStatus';
 import { TodoMessage } from '~/components/TodoMessage';
 import { DeleteTodo } from '~/components/DeleteTodo';
-import { LogoutButton } from '~/components/LogoutButton';
-import { redirect } from 'next/navigation';
-import { auth } from '~/auth';
+import { Footer } from '~/components/Footer';
 
 type TodoStatus = 'all' | 'active' | 'completed';
 
@@ -22,19 +20,12 @@ type TodoProps = {
 };
 
 export default async function Home({ searchParams }: TodoProps) {
-  const session = await auth();
-  if (!session) {
-    redirect('/login');
-  }
-
   const status = searchParams?.status;
   const todos = await getTodos();
   const filteredTodos = todos.filter((todo) => (status === 'all' ? true : todo.status === status));
 
   return (
     <main className="flex min-h-screen flex-col items-center bg-gray-100 p-6">
-      <LogoutButton />
-
       <h1 className="mb-3 text-8xl font-thin tracking-tight text-gray-300">todos</h1>
       <div className="relative z-10 w-full max-w-[550px]">
         <div className={`todo-card ${!Boolean(todos.length) ? 'before:hidden after:hidden' :''}`}>
@@ -61,21 +52,7 @@ export default async function Home({ searchParams }: TodoProps) {
           )}
         </div>
 
-        <div className="flex flex-col gap-1.5 w-full items-center mt-16">
-          <p className="text-[10px] text-gray-300">Double-click to edit a todo</p>
-          <p className="text-[10px] text-gray-300">
-            Created by{' '}
-            <a className="text-gray-400 hover:underline" href="https://github.com/platypusrex">
-              Frank Cooke
-            </a>
-          </p>
-          <p className="text-[10px] text-gray-300">
-            In homage to {' '}
-            <a className="text-gray-400 hover:underline" href="https://todomvc.com/">
-              TodoMVC
-            </a>
-          </p>
-        </div>
+        <Footer />
       </div>
     </main>
   );
