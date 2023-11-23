@@ -25,7 +25,7 @@ export default async function Home({ searchParams }: TodoProps) {
   const filteredTodos = todos.filter((todo) => (status === 'all' ? true : todo.status === status));
 
   return (
-    <main className="flex min-h-screen flex-col items-center bg-gray-100 p-6">
+    <main className="flex min-h-screen flex-col items-center bg-gray-100 py-6 px-1 md:px-6 md:my-2">
       <h1 className="mb-3 text-8xl font-thin tracking-tight text-gray-300">todos</h1>
       <div className="relative z-10 w-full max-w-[550px]">
         <div className={`todo-card ${!Boolean(todos.length) ? 'before:hidden after:hidden' :''}`}>
