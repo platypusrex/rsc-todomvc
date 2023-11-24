@@ -16,6 +16,21 @@ const config: Config = {
         'card-outer': '0 25px 50px 0 rgba(0, 0, 0, 0.1)',
         'card-inner': 'inset 0 -2px 1px rgba(0,0,0,0.03);',
       },
+      keyframes: {
+        text: {
+          '0%, 100%': {
+            'background-size': '200% 200%',
+            'background-position': 'left center',
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center',
+          },
+        },
+      },
+      animation: {
+        'bg-move': 'text 4s linear infinite'
+      }
     },
   },
   plugins: [],
